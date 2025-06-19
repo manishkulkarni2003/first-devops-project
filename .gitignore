@@ -1,0 +1,57 @@
+# Node modules
+**/node_modules/
+**/dist/
+**/build/
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# dotenv environment files
+**/.env
+
+# System files
+.DS_Store
+Thumbs.db
+
+# IDEs
+.vscode/
+.idea/
+
+# OS-specific
+*.swp
+*.swo
+
+# Docker
+**/Dockerfile
+docker-compose.override.yml
+.docker/
+
+# Ansible cache
+.ansible/
+
+# Jenkins build artifacts
+jenkins/output/
+*.war
+*.jar
+
+# Coverage
+coverage/
+*.lcov
+
+# Optional: logs and temporary files
+tmp/
+*.bak
+*.old
+*.orig
+
+# Git-specific
+.git/
