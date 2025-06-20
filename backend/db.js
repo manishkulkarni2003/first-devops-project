@@ -1,16 +1,15 @@
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
 
-const mongoDbUrl = 'mongodb://localhost:27017/'
+const mongoDbUrl = process.env.MONGO_URL || 'mongodb://localhost:27017/mydb';
+
 const connectDb = async () => {
     try {
-        await mongoose.connect(mongoDbUrl)
-        console.log("Connected to Db")
+        await mongoose.connect(mongoDbUrl);
+        console.log("✅ Connected to DB");
     } catch (err) {
-        console.log(err)
-        process.exit(1)
+        console.error("❌ MongoDB Connection Error:", err.message);
+        process.exit(1);
     }
-}
+};
 
-
-
-module.exports = connectDb
+module.exports = connectDb;

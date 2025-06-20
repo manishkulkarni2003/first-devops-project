@@ -1,0 +1,50 @@
+pipeline {
+    agent any
+
+    environment {
+        PROJECT_DIR = 'first-devops-project'
+    }
+
+    stages {
+
+        stage('Checkout') {
+            steps {
+                echo '📥 Cloning Repository...'
+                git branch: 'main', url: 'https://github.com/manishkulkarni2003/first-devops-project.git'
+            }
+        }
+
+        stage('Build Docker Images') {
+            steps {
+                echo '🐳 Building Docker Images for Backend & Frontend...'
+                sh 'docker-compose build'
+            }
+        }
+
+        stage('Run Containers') {
+            steps {
+                echo '🚀 Starting all containers using Docker Compose...'
+                sh 'docker-compose up -d'
+            }
+        }
+
+        stage('Post-Deployment Health Check') {
+            steps {
+                echo '🩺 Verifying Backend and Frontend status...'
+                sh '''
+                    curl -f http://localhost:3000 || echo "Backend down"
+                    curl -f http://localhost:3001 || echo "Frontend down"
+                '''
+            }
+        }
+    }
+
+    post {
+        success {
+            echo '✅ Build and Deployment Successful!'
+        }
+        failure {
+            echo '❌ Build Failed!'
+        }
+    }
+}

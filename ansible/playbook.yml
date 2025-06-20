@@ -1,0 +1,7 @@
+---
+- name: 🚀 Full DevOps Project Deployment
+  hosts: dev
+  become: yes
+  roles:
+    - setup
+    - deploy
